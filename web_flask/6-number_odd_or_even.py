@@ -44,14 +44,15 @@ def number_template(number):
     return render_template("5-number.html", number=number)
 
 
-@app.route('/number_odd_or_even/<int:number>') 
-def number_odd_or_even(number): 
+@app.route('/number_odd_or_even/<int:number>')
+def number_odd_or_even(number):
     if (number % 2 == 0):
         evenodd = "even"
     else:
         evenodd = "odd"
-    return render_template("6-number_odd_or_even.html", number=number, evenodd=evenodd)
-  
+    return render_template("6-number_odd_or_even.html",
+                           number=number, evenodd=evenodd)
+
 
 """ The server only starts if the script is executed directly"""
 if __name__ == "__main__":

@@ -28,6 +28,33 @@ class test_fileStorage(unittest.TestCase):
         """ __objects is initially empty """
         self.assertEqual(len(storage.all()), 0)
 
+    def test_delete_valid_object(self):
+        """Test deleting a valid object"""
+        bm = BaseModel()
+        bm.save()
+        obj_count_before = len(storage.all())
+        storage.delete(bm)
+        obj_count_after = len(storage.all())
+        self.assertEqual(obj_count_before - 1, obj_count_after)
+
+    def test_delete_none(self):
+        """Test deleting None"""
+        bm = BaseModel()
+        bm.save()
+        obj_count_before = len(storage.all())
+        storage.delete(None)
+        obj_count_after = len(storage.all())
+        self.assertEqual(obj_count_before, obj_count_after)
+
+    def test_delete_nonexistent(self):
+        """Test deleting an object that doesn't exist in storage"""
+        bm1 = BaseModel()
+        bm2 = BaseModel()
+        bm2_id = bm2.id
+        bm2.save()
+        storage.delete(bm1)
+        self.assertIn("BaseModel.{}".format(bm2_id), storage.all())
+
     def test_new(self):
         """ New object is correctly added to __objects """
         new = BaseModel()

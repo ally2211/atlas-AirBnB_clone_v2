@@ -15,6 +15,7 @@ def hello():
     # This function is called when someone accesses '/' URL.
     return "Hello HBNB!"
 
+
 @app.route('/hbnb')
 def hello_hbnb():
     # This function is called when someone accesses '/' URL.

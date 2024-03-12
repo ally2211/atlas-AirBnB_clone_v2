@@ -9,10 +9,10 @@ app = Flask(__name__)
 @app.route('/', strict_slashes=False)
 def hello():
     # This function is called when someone accesses '/' URL.
-    return printf("Hello HBNB!")
+    return "Hello HBNB!"
 
 
 # Check if the executed script is the main program and not imported as a module 
 if __name__ == '__main__':
     # Run the Flask application  host='0.0.0.0' makes the server accessible externally.
-    app.run(host='127.0.0.1', port=5000)
+    app.run(host='0.0.0.0', port=5000)

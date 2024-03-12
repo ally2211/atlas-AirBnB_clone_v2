@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-# Import the Flask class from the flask module
+""" Import the Flask class from the flask module """
 from flask import Flask
 
-# Create an instance of the Flask class. __name__ is just the name of the module.
+""" Create an instance of the Flask class. __name__ is the name of module."""
 app = Flask(__name__)
 
 # Use the route() decorator to trigger the function that follows.

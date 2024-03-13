@@ -40,6 +40,9 @@ class DBStorage:
         if HBNB_ENV == "test":
             Base.metadata.drop_all(self.__engine)
 
+    def close(self):
+        self.__session.remove()
+
     def all(self, cls=None):
         """query on the current database session"""
         new_dict = {}
@@ -54,6 +57,7 @@ class DBStorage:
     def new(self, obj):
         """add the object to the current database session"""
         self.__session.add(obj)
+
 
     def save(self):
         """commit all changes of the current database session"""

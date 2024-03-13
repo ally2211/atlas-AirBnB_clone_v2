@@ -1,25 +1,20 @@
 #!/usr/bin/python3
-""" State Module for HBNB project """
-from models.base_model import BaseModel
-from datetime import datetime
+""" holds class State"""
+import models
+from models.base_model import BaseModel, Base
+from models.city import City
+from os import getenv
+import sqlalchemy
+from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy.orm import relationship
 
 
-class State(BaseModel):
-    """
-    State class
-    need to explicitly declare updated_at and created_at
-    because to_dict is overriding the to_dict in BaseModel
-    """
-    created_at = datetime.now()
-    updated_at = datetime.now()
-
-    def __init__(self, *args, **kwargs):
-        """ Initializes a new instance of State """
-        self.name = kwargs.get('name', "")
-        super().__init__(*args, **kwargs)
-
-    def to_dict(self):
-        """Convert instance into dict format, including the name attribute"""
-        dictionary = super().to_dict()
-        dictionary['name'] = self.name
-        return dictionary
+class State(BaseModel, Base):
+    """Representation of state """
+    if models.storage_t == "db":
+        __tablename__ = 'states'
+        name = Column(String(128), nullable=False)
+        cities = relationship("City", backref="state")
+    else:
+        name = ""
+	cites = []

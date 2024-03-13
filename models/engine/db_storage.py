@@ -58,7 +58,6 @@ class DBStorage:
         """add the object to the current database session"""
         self.__session.add(obj)
 
-
     def save(self):
         """commit all changes of the current database session"""
         self.__session.commit()
@@ -74,4 +73,3 @@ class DBStorage:
         sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(sess_factory)
         self.__session = Session
-
